@@ -19,7 +19,7 @@
       <div>
         <h2 class="text-2xl font-bold text-ellaia-ink mb-6">Envia-nos uma Mensagem</h2>
         <app-card>
-          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" (input)="onFormChange()">
             <div class="space-y-6">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -140,6 +140,32 @@
               >
                 Enviar Mensagem
               </app-button>
+
+              <!-- Success Message -->
+              @if (submitSuccess()) {
+                <div class="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <div class="flex items-center">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <p class="text-green-800 text-sm font-medium">
+                      Mensagem enviada com sucesso! Entraremos em contacto em breve.
+                    </p>
+                  </div>
+                </div>
+              }
+
+              <!-- Error Message -->
+              @if (submitError()) {
+                <div class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <div class="flex items-center">
+                    <svg class="w-5 h-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <p class="text-red-800 text-sm font-medium">{{ submitError() }}</p>
+                  </div>
+                </div>
+              }
             </div>
           </form>
         </app-card>

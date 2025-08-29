@@ -16,11 +16,11 @@
     <div class="flex flex-wrap items-center justify-between gap-4">
       <div class="flex flex-wrap items-center gap-2">
         <span class="text-sm font-medium text-ellaia-ink">Filtrar por:</span>
-        @for (category of categories; track category.slug) {
+        @for (category of categories(); track category.id) {
           <app-button 
-            [variant]="selectedCategory() === category.slug ? 'primary' : 'outline'"
+            [variant]="selectedCategory() === category.id ? 'primary' : 'outline'"
             size="sm"
-            (click)="selectCategory(category.slug)"
+            (click)="selectCategory(category.id)"
           >
             {{ category.name }}
           </app-button>
@@ -42,7 +42,48 @@
 <!-- Posts Grid -->
 <section class="py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    @if (filteredPosts().length === 0) {
+    @if (loading()) {
+      <!-- Loading State -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (item of [1, 2, 3, 4, 5, 6]; track item) {
+          <app-card class="overflow-hidden">
+            <div class="w-full h-48 bg-gray-200 animate-pulse"></div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-3">
+                <div class="h-4 w-20 bg-gray-200 rounded animate-pulse"></div>
+                <div class="h-4 w-16 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+              <div class="h-5 w-full bg-gray-200 rounded mb-2 animate-pulse"></div>
+              <div class="h-5 w-3/4 bg-gray-200 rounded mb-4 animate-pulse"></div>
+              <div class="h-4 w-full bg-gray-200 rounded mb-1 animate-pulse"></div>
+              <div class="h-4 w-2/3 bg-gray-200 rounded mb-4 animate-pulse"></div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <div class="w-8 h-8 bg-gray-200 rounded-full animate-pulse"></div>
+                  <div class="h-3 w-20 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+                <div class="h-8 w-20 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+            </div>
+          </app-card>
+        }
+      </div>
+    } @else if (error()) {
+      <!-- Error State -->
+      <div class="text-center py-16">
+        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-medium text-ellaia-ink mb-2">Erro ao carregar conteúdo</h3>
+        <p class="text-ellaia-muted mb-4">{{ error() }}</p>
+        <app-button variant="outline" (click)="retryLoad()">
+          Tentar Novamente
+        </app-button>
+      </div>
+    } @else if (filteredPosts().length === 0) {
+      <!-- Empty State -->
       <div class="text-center py-16">
         <div class="w-16 h-16 bg-ellaia-muted/10 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg class="w-8 h-8 text-ellaia-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,7 +105,7 @@
               >
               <div class="absolute top-4 left-4">
                 <app-badge 
-                  [variant]="getCategoryVariant(post.categorySlug)"
+                  variant="primary"
                   size="sm"
                 >
                   {{ post.categoryName }}
@@ -88,12 +129,10 @@
 
               <div class="flex items-center justify-between mt-auto">
                 <div class="flex items-center space-x-2">
-                  <img 
-                    [src]="post.author.avatar" 
-                    [alt]="post.author.name"
-                    class="w-8 h-8 rounded-full"
-                  >
-                  <span class="text-sm text-ellaia-muted">{{ post.author.name }}</span>
+                  <div class="w-8 h-8 rounded-full bg-ellaia-magenta/10 flex items-center justify-center">
+                    <span class="text-xs font-medium text-ellaia-magenta">{{ post.authorName?.charAt(0) || 'A' }}</span>
+                  </div>
+                  <span class="text-sm text-ellaia-muted">{{ post.authorName || 'Autor' }}</span>
                 </div>
                 
                 <app-button 

@@ -104,20 +104,63 @@
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      @for (member of teamMembers; track member.id) {
-        <app-card class="text-center">
-          <img 
-            [src]="member.avatar" 
-            [alt]="member.name"
-            class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-          >
-          <h3 class="text-xl font-semibold text-ellaia-ink mb-1">{{ member.name }}</h3>
-          <p class="text-ellaia-coral font-medium mb-3">{{ member.role }}</p>
-          <p class="text-ellaia-muted text-sm">{{ member.bio }}</p>
-        </app-card>
-      }
-    </div>
+    @if (loading()) {
+      <!-- Loading State -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (item of [1, 2, 3]; track item) {
+          <app-card class="text-center">
+            <div class="w-24 h-24 rounded-full mx-auto mb-4 bg-gray-200 animate-pulse"></div>
+            <div class="h-6 w-32 bg-gray-200 rounded mx-auto mb-2 animate-pulse"></div>
+            <div class="h-4 w-24 bg-gray-200 rounded mx-auto mb-3 animate-pulse"></div>
+            <div class="space-y-2">
+              <div class="h-3 w-full bg-gray-200 rounded animate-pulse"></div>
+              <div class="h-3 w-3/4 bg-gray-200 rounded mx-auto animate-pulse"></div>
+            </div>
+          </app-card>
+        }
+      </div>
+    } @else if (error()) {
+      <!-- Error State -->
+      <div class="text-center py-16">
+        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-medium text-ellaia-ink mb-2">Erro ao carregar equipa</h3>
+        <p class="text-ellaia-muted mb-4">{{ error() }}</p>
+        <app-button variant="outline" (click)="loadTeamMembers()">
+          Tentar Novamente
+        </app-button>
+      </div>
+    } @else if (teamMembers().length === 0) {
+      <!-- Empty State -->
+      <div class="text-center py-16">
+        <div class="w-16 h-16 bg-ellaia-muted/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-ellaia-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-medium text-ellaia-ink mb-2">Equipa não disponível</h3>
+        <p class="text-ellaia-muted">Informações da equipa não estão disponíveis no momento.</p>
+      </div>
+    } @else {
+      <!-- Team Members Content -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (member of teamMembers(); track member.id) {
+          <app-card class="text-center">
+            <img 
+              [src]="member.avatar" 
+              [alt]="member.name"
+              class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+            >
+            <h3 class="text-xl font-semibold text-ellaia-ink mb-1">{{ member.name }}</h3>
+            <p class="text-ellaia-coral font-medium mb-3">{{ member.displayRole || member.role }}</p>
+            <p class="text-ellaia-muted text-sm">{{ member.bio }}</p>
+          </app-card>
+        }
+      </div>
+    }
   </div>
 </section>
 

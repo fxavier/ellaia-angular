@@ -1,8 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ButtonComponent } from '../../shared/components/ui/button.component';
 import { CardComponent } from '../../shared/components/ui/card.component';
+import { AuthorsService } from '../../core/services/authors.service';
+import { Author } from '../../shared/models';
+
+interface TeamMember extends Author {
+  displayRole?: string;
+}
 
 @Component({
   selector: 'app-about',
@@ -10,28 +16,56 @@ import { CardComponent } from '../../shared/components/ui/card.component';
   imports: [CommonModule, RouterModule, ButtonComponent, CardComponent],
   templateUrl: './about.component.html'
 })
-export class AboutComponent {
-  teamMembers = [
-    {
-      id: '1',
-      name: 'Ana Sofia Carvalho',
-      role: 'Fundadora & CEO',
-      bio: 'Especialista em liderança feminina e transformação digital com mais de 15 anos de experiência.',
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face'
-    },
-    {
-      id: '2',
-      name: 'Beatriz Santos',
-      role: 'Head of Technology',
-      bio: 'Engenheira de software com paixão por diversidade e inclusão no setor tech.',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
-    },
-    {
-      id: '3',
-      name: 'Carolina Mendoça',
-      role: 'Especialista em Bem-estar',
-      bio: 'Psicóloga especializada em bem-estar digital e saúde mental.',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face'
-    }
-  ];
+export class AboutComponent implements OnInit {
+  private authorsService = inject(AuthorsService);
+
+  teamMembers = signal<TeamMember[]>([]);
+  loading = signal(true);
+  error = signal<string | null>(null);
+
+  ngOnInit() {
+    this.loadTeamMembers();
+  }
+
+  loadTeamMembers() {
+    this.loading.set(true);
+    this.error.set(null);
+
+    this.authorsService.getTeamMembers().subscribe({
+      next: (response) => {
+        if (response.success) {
+          // Mapear roles para display names mais amigáveis
+          const membersWithDisplayRole = response.data.map(member => ({
+            ...member,
+            displayRole: this.getDisplayRole(member.role)
+          }));
+
+          this.teamMembers.set(membersWithDisplayRole);
+        } else {
+          this.error.set(response.message || 'Erro ao carregar membros da equipa');
+        }
+        this.loading.set(false);
+      },
+      error: (error) => {
+        console.error('Error loading team members:', error);
+        this.error.set('Erro ao carregar membros da equipa');
+        this.loading.set(false);
+      }
+    });
+  }
+
+  private getDisplayRole(role: Author['role']): string {
+    const roleMap: Record<Author['role'], string> = {
+      'ADMIN': 'Fundadora & CEO',
+      'EDITOR': 'Editora',
+      'AUTHOR': 'Autora',
+      'READER': 'Leitora'
+    };
+    return roleMap[role] || role;
+  }
+
+  // Getter para verificar se está carregando
+  get isLoadingTeam(): boolean {
+    return this.authorsService.isLoading('get', 'authors') || this.loading();
+  }
 }
