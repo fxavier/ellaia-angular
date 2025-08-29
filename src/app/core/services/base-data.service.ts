@@ -84,7 +84,12 @@ export class BaseDataService {
         }),
         catchError(error => {
           this.setLoading(loadingKey, false);
-          return throwError(() => error);
+          console.error(`Error parsing localStorage data for ${entity}:`, error);
+          return of({
+            data: [] as T[],
+            success: false,
+            message: `Error parsing stored ${entity} data: ${error.message || 'Unknown error'}`
+          } as ApiResponse<T[]>);
         })
       );
     }
@@ -103,11 +108,12 @@ export class BaseDataService {
       }),
       catchError(error => {
         this.setLoading(loadingKey, false);
-        return throwError(() => ({
+        console.error(`Error loading ${entity} from assets:`, error);
+        return of({
           data: [] as T[],
           success: false,
-          message: `Failed to load ${entity}: ${error.message}`
-        }));
+          message: `Failed to load ${entity}: ${error.message || 'Unknown error'}`
+        } as ApiResponse<T[]>);
       })
     );
   }
@@ -129,7 +135,12 @@ export class BaseDataService {
       }),
       catchError(error => {
         this.setLoading(loadingKey, false);
-        return throwError(() => error);
+        console.error(`Error getting ${entity} by id ${id}:`, error);
+        return of({
+          data: null,
+          success: false,
+          message: `Error getting ${entity} by id ${id}: ${error.message || 'Unknown error'}`
+        } as ApiResponse<T | null>);
       })
     );
   }
@@ -162,11 +173,12 @@ export class BaseDataService {
       delay(this.DELAY_MS),
       catchError(error => {
         this.setLoading(loadingKey, false);
-        return throwError(() => ({
+        console.error(`Error creating ${entity}:`, error);
+        return of({
           data: null as any,
           success: false,
-          message: `Failed to create ${entity}: ${error.message}`
-        }));
+          message: `Failed to create ${entity}: ${error.message || 'Unknown error'}`
+        } as ApiResponse<T>);
       })
     );
   }
@@ -206,11 +218,12 @@ export class BaseDataService {
       delay(this.DELAY_MS),
       catchError(error => {
         this.setLoading(loadingKey, false);
-        return throwError(() => ({
+        console.error(`Error updating ${entity}:`, error);
+        return of({
           data: null as any,
           success: false,
-          message: `Failed to update ${entity}: ${error.message}`
-        }));
+          message: `Failed to update ${entity}: ${error.message || 'Unknown error'}`
+        } as ApiResponse<T>);
       })
     );
   }
@@ -242,11 +255,12 @@ export class BaseDataService {
       delay(this.DELAY_MS),
       catchError(error => {
         this.setLoading(loadingKey, false);
-        return throwError(() => ({
+        console.error(`Error deleting ${entity}:`, error);
+        return of({
           data: false,
           success: false,
-          message: `Failed to delete ${entity}: ${error.message}`
-        }));
+          message: `Failed to delete ${entity}: ${error.message || 'Unknown error'}`
+        } as ApiResponse<boolean>);
       })
     );
   }
