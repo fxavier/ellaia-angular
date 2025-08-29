@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "postId": "1",
+    "authorName": "Mariana Silva",
+    "authorEmail": "mariana@example.com",
+    "body": "Artigo muito inspirador! Como mulher na área tech, identifico-me completamente com os desafios mencionados. Obrigada por partilhar estas reflexões importantes.",
+    "status": "APPROVED",
+    "createdAt": "2024-08-28T12:30:00Z"
+  },
+  {
+    "id": "2", 
+    "postId": "1",
+    "authorName": "João Pereira",
+    "authorEmail": "joao@example.com",
+    "body": "Excelente análise sobre liderança feminina. É fundamental que empresas invistam mais em diversidade nos cargos de liderança.",
+    "status": "APPROVED",
+    "createdAt": "2024-08-28T15:45:00Z"
+  },
+  {
+    "id": "3",
+    "postId": "2",
+    "authorName": "Sofia Costa",
+    "authorEmail": "sofia@example.com", 
+    "body": "As estratégias de autocuidado digital que mencionaste são muito práticas. Já comecei a implementar algumas e sinto diferença!",
+    "status": "APPROVED",
+    "createdAt": "2024-08-26T14:20:00Z"
+  },
+  {
+    "id": "4",
+    "postId": "3",
+    "authorName": "Miguel Santos",
+    "authorEmail": "miguel@example.com",
+    "body": "Projetos como estes mostram o verdadeiro potencial da IA para o bem. Parabéns pelo artigo esclarecedor!",
+    "status": "APPROVED", 
+    "createdAt": "2024-08-25T09:15:00Z"
+  },
+  {
+    "id": "5",
+    "postId": "4",
+    "authorName": "Rita Oliveira",
+    "authorEmail": "rita@example.com",
+    "body": "A história da Maria é realmente inspiradora. Também estou a considerar uma mudança de carreira para algo com mais propósito social.",
+    "status": "APPROVED",
+    "createdAt": "2024-08-23T11:00:00Z"
+  },
+  {
+    "id": "6",
+    "postId": "5", 
+    "authorName": "Luís Martins",
+    "authorEmail": "luis@example.com",
+    "body": "Nunca tinha pensado na escrita como ferramenta terapêutica. Vou experimentar os exercícios que sugeriste.",
+    "status": "PENDING",
+    "createdAt": "2024-08-21T16:30:00Z"
+  }
+]

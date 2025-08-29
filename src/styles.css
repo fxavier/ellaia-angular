@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ellaia-magenta: #D81B60;
+  --ellaia-coral: #FF6F61;
+  --ellaia-electric: #0EA5E9;
+  --ellaia-ink: #0B0B0C;
+  --ellaia-stone: #F5F5F6;
+  --ellaia-muted: #6B7280;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-ellaia-ink bg-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-ellaia-magenta text-white hover:bg-ellaia-magenta/90 focus:ring-ellaia-magenta;
+  }
+  
+  .btn-secondary {
+    @apply bg-ellaia-electric text-white hover:bg-ellaia-electric/90 focus:ring-ellaia-electric;
+  }
+  
+  .btn-outline {
+    @apply border border-ellaia-muted text-ellaia-ink hover:bg-ellaia-stone focus:ring-ellaia-muted;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200;
+  }
+  
+  .chip {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .chip-primary {
+    @apply bg-ellaia-magenta/10 text-ellaia-magenta;
+  }
+  
+  .chip-secondary {
+    @apply bg-ellaia-coral/10 text-ellaia-coral;
+  }
+}

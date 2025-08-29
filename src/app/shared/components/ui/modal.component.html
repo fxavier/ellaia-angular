@@ -1,0 +1,50 @@
+@if (isOpen()) {
+  <div 
+    class="fixed inset-0 z-50 overflow-y-auto"
+    (click)="onBackdropClick($event)"
+    #backdrop
+  >
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0">
+      <!-- Background overlay -->
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+      <!-- Modal panel -->
+      <div 
+        class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+        [class]="modalSizeClasses()"
+        #modal
+      >
+        @if (showHeader()) {
+          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg leading-6 font-medium text-gray-900">
+                <ng-content select="[slot=header]"></ng-content>
+              </h3>
+              @if (closable()) {
+                <app-button
+                  variant="ghost"
+                  size="sm"
+                  (click)="close()"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </app-button>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6">
+          <ng-content></ng-content>
+        </div>
+
+        @if (showFooter()) {
+          <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+            <ng-content select="[slot=footer]"></ng-content>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

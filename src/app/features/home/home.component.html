@@ -1,0 +1,148 @@
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-br from-ellaia-magenta via-ellaia-coral to-ellaia-electric text-white">
+  <div class="absolute inset-0 bg-black/20"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+    <div class="text-center">
+      <h1 class="text-4xl lg:text-6xl font-bold mb-6">
+        Potenciamos a 
+        <span class="bg-white text-ellaia-magenta px-3 py-1 rounded-lg">
+          Liderança Feminina
+        </span>
+      </h1>
+      <p class="text-xl lg:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
+        Através de conteúdo inspirador, mentorias personalizadas e programas transformadores, 
+        ajudamos mulheres a alcançar o seu potencial máximo.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <app-button variant="primary" size="lg">
+          Explorar Conteúdos
+        </app-button>
+        <app-button variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-ellaia-magenta">
+          Sobre Nós
+        </app-button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission Section -->
+<section class="py-16 bg-ellaia-stone/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-ellaia-ink mb-4">Nossa Missão</h2>
+      <p class="text-lg text-ellaia-muted max-w-3xl mx-auto">
+        Criamos um ecossistema onde mulheres podem crescer, inspirar e liderar com propósito, 
+        promovendo igualdade e transformação positiva na sociedade.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <app-card [hover]="true" class="text-center">
+        <div class="w-16 h-16 bg-ellaia-magenta/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-ellaia-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-ellaia-ink mb-2">Conteúdo Inspirador</h3>
+        <p class="text-ellaia-muted">
+          Artigos, histórias e insights que motivam e capacitam mulheres em todas as áreas da vida.
+        </p>
+      </app-card>
+
+      <app-card [hover]="true" class="text-center">
+        <div class="w-16 h-16 bg-ellaia-coral/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-ellaia-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-ellaia-ink mb-2">Mentorias</h3>
+        <p class="text-ellaia-muted">
+          Acompanhamento personalizado para desenvolvimento de carreira e liderança.
+        </p>
+      </app-card>
+
+      <app-card [hover]="true" class="text-center">
+        <div class="w-16 h-16 bg-ellaia-electric/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-ellaia-electric" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-ellaia-ink mb-2">Transformação</h3>
+        <p class="text-ellaia-muted">
+          Programas e ferramentas que geram impacto real na vida pessoal e profissional.
+        </p>
+      </app-card>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Blog Posts -->
+<section class="py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center mb-12">
+      <div>
+        <h2 class="text-3xl font-bold text-ellaia-ink mb-2">A Voz d'Elas</h2>
+        <p class="text-ellaia-muted">Histórias inspiradoras e insights transformadores</p>
+      </div>
+      <app-button variant="outline" routerLink="/voz-delas">
+        Ver Todos os Artigos
+      </app-button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (post of featuredPosts; track post.id) {
+        <app-card [hover]="true" class="overflow-hidden">
+          <img 
+            [src]="post.coverImage" 
+            [alt]="post.title"
+            class="w-full h-48 object-cover"
+          >
+          <div class="p-6">
+            <div class="flex items-center mb-3">
+              <app-badge variant="primary" size="sm">
+                {{ post.category }}
+              </app-badge>
+              <span class="text-sm text-ellaia-muted ml-auto">
+                {{ post.readingTime }} min leitura
+              </span>
+            </div>
+            <h3 class="text-lg font-semibold text-ellaia-ink mb-2 line-clamp-2">
+              {{ post.title }}
+            </h3>
+            <p class="text-ellaia-muted text-sm mb-4 line-clamp-3">
+              {{ post.excerpt }}
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-ellaia-muted">
+                {{ post.publishedAt | date:'dd MMM yyyy' }}
+              </span>
+              <app-button variant="ghost" size="sm" [routerLink]="['/voz-delas', post.slug]">
+                Ler Mais
+              </app-button>
+            </div>
+          </div>
+        </app-card>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter CTA -->
+<section class="py-16 bg-gradient-to-r from-ellaia-magenta to-ellaia-coral">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+    <h2 class="text-3xl font-bold mb-4">Junta-te à Nossa Comunidade</h2>
+    <p class="text-xl mb-8 opacity-90">
+      Recebe conteúdo exclusivo, insights e oportunidades diretamente no teu email.
+    </p>
+    <div class="max-w-md mx-auto flex">
+      <input 
+        type="email" 
+        placeholder="Teu email"
+        class="flex-1 px-4 py-3 rounded-l-lg border-none text-ellaia-ink focus:outline-none focus:ring-2 focus:ring-white"
+      >
+      <app-button variant="secondary" size="md" class="rounded-l-none bg-white text-ellaia-magenta hover:bg-gray-100">
+        Subscrever
+      </app-button>
+    </div>
+  </div>
+</section>

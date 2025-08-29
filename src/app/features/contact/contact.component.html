@@ -1,0 +1,218 @@
+<!-- Hero Section -->
+<section class="py-16 bg-gradient-to-br from-ellaia-coral/10 to-ellaia-electric/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-ellaia-ink mb-6">Contacta-nos</h1>
+      <p class="text-xl text-ellaia-muted max-w-3xl mx-auto">
+        Tem alguma questão? Quer saber mais sobre os nossos serviços? 
+        Estamos aqui para ajudar no teu crescimento.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form & Info -->
+<section class="py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Contact Form -->
+      <div>
+        <h2 class="text-2xl font-bold text-ellaia-ink mb-6">Envia-nos uma Mensagem</h2>
+        <app-card>
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-ellaia-ink mb-2">
+                    Nome *
+                  </label>
+                  <input 
+                    type="text" 
+                    formControlName="firstName"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ellaia-magenta focus:border-transparent"
+                    [class.border-red-500]="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched"
+                  >
+                  @if (contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched) {
+                    <p class="text-red-500 text-xs mt-1">Nome é obrigatório</p>
+                  }
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-ellaia-ink mb-2">
+                    Apelido *
+                  </label>
+                  <input 
+                    type="text" 
+                    formControlName="lastName"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ellaia-magenta focus:border-transparent"
+                    [class.border-red-500]="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched"
+                  >
+                  @if (contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched) {
+                    <p class="text-red-500 text-xs mt-1">Apelido é obrigatório</p>
+                  }
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-ellaia-ink mb-2">
+                  Email *
+                </label>
+                <input 
+                  type="email" 
+                  formControlName="email"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ellaia-magenta focus:border-transparent"
+                  [class.border-red-500]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+                >
+                @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+                  <p class="text-red-500 text-xs mt-1">Email válido é obrigatório</p>
+                }
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-ellaia-ink mb-2">
+                  Assunto *
+                </label>
+                <select 
+                  formControlName="subject"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ellaia-magenta focus:border-transparent"
+                  [class.border-red-500]="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched"
+                >
+                  <option value="">Seleciona um assunto</option>
+                  <option value="mentoria">Mentoria Individual</option>
+                  <option value="programas">Programas de Grupo</option>
+                  <option value="workshops">Workshops & Masterclasses</option>
+                  <option value="consultoria">Consultoria Organizacional</option>
+                  <option value="parceria">Parcerias</option>
+                  <option value="outro">Outro</option>
+                </select>
+                @if (contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched) {
+                  <p class="text-red-500 text-xs mt-1">Assunto é obrigatório</p>
+                }
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-ellaia-ink mb-2">
+                  Mensagem *
+                </label>
+                <textarea 
+                  formControlName="message"
+                  rows="5"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ellaia-magenta focus:border-transparent resize-none"
+                  [class.border-red-500]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+                  placeholder="Conta-nos sobre os teus objetivos, desafios ou questões..."
+                ></textarea>
+                @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+                  <p class="text-red-500 text-xs mt-1">Mensagem é obrigatória</p>
+                }
+              </div>
+
+              <div class="flex items-start">
+                <input 
+                  type="checkbox" 
+                  formControlName="newsletter"
+                  class="mt-1 h-4 w-4 text-ellaia-magenta focus:ring-ellaia-magenta border-gray-300 rounded"
+                >
+                <label class="ml-2 text-sm text-ellaia-muted">
+                  Quero receber a newsletter da ELLAIA com conteúdo exclusivo e novidades.
+                </label>
+              </div>
+
+              <div class="flex items-start">
+                <input 
+                  type="checkbox" 
+                  formControlName="privacy"
+                  class="mt-1 h-4 w-4 text-ellaia-magenta focus:ring-ellaia-magenta border-gray-300 rounded"
+                >
+                <label class="ml-2 text-sm text-ellaia-muted">
+                  Li e aceito a <a href="/privacidade" class="text-ellaia-magenta hover:underline">Política de Privacidade</a> *
+                </label>
+              </div>
+              @if (contactForm.get('privacy')?.invalid && contactForm.get('privacy')?.touched) {
+                <p class="text-red-500 text-xs">Deve aceitar a Política de Privacidade</p>
+              }
+
+              <app-button 
+                type="submit" 
+                variant="primary" 
+                size="lg" 
+                [fullWidth]="true"
+                [loading]="submitting()"
+                [disabled]="contactForm.invalid"
+              >
+                Enviar Mensagem
+              </app-button>
+            </div>
+          </form>
+        </app-card>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="space-y-8">
+        <div>
+          <h2 class="text-2xl font-bold text-ellaia-ink mb-6">Outras Formas de Contacto</h2>
+          
+          <div class="space-y-6">
+            <app-card>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-ellaia-magenta/10 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-ellaia-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-ellaia-ink mb-1">Email</h3>
+                  <p class="text-ellaia-muted">geral@ellaia.com</p>
+                  <p class="text-ellaia-muted text-sm">Respondemos em até 24 horas</p>
+                </div>
+              </div>
+            </app-card>
+
+            <app-card>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-ellaia-coral/10 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-ellaia-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-ellaia-ink mb-1">Redes Sociais</h3>
+                  <div class="space-y-1">
+                    <p class="text-ellaia-muted">Instagram: @ellaia</p>
+                    <p class="text-ellaia-muted">LinkedIn: /company/ellaia</p>
+                  </div>
+                </div>
+              </div>
+            </app-card>
+
+            <app-card>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-ellaia-electric/10 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-ellaia-electric" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-ellaia-ink mb-1">Horário</h3>
+                  <p class="text-ellaia-muted">Segunda a Sexta: 9h - 18h</p>
+                  <p class="text-ellaia-muted text-sm">Tempo de resposta mais rápido</p>
+                </div>
+              </div>
+            </app-card>
+          </div>
+        </div>
+
+        <!-- FAQ Preview -->
+        <div>
+          <h3 class="text-lg font-semibold text-ellaia-ink mb-4">Perguntas Frequentes</h3>
+          <div class="space-y-3">
+            @for (faq of faqs; track $index) {
+              <div class="border-l-4 border-ellaia-magenta/20 pl-4">
+                <h4 class="text-sm font-medium text-ellaia-ink">{{ faq.question }}</h4>
+                <p class="text-xs text-ellaia-muted">{{ faq.answer }}</p>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "name": "Ana Sofia Carvalho",
+    "email": "ana.carvalho@ellaia.com",
+    "role": "ADMIN",
+    "bio": "Fundadora da ELLAIA. Especialista em liderança feminina e transformação digital. Mais de 15 anos de experiência em tecnologia e consultoria estratégica.",
+    "avatar": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+    "links": {
+      "linkedin": "https://linkedin.com/in/anasofiacarvalho",
+      "instagram": "https://instagram.com/anasofiacarvalho",
+      "website": "https://anasofiacarvalho.com"
+    },
+    "createdAt": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "2", 
+    "name": "Beatriz Santos",
+    "email": "beatriz.santos@ellaia.com",
+    "role": "EDITOR",
+    "bio": "Head of Technology na ELLAIA. Engenheira de software com paixão por diversidade e inclusão no setor tech. Mentora de mulheres em tecnologia.",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    "links": {
+      "linkedin": "https://linkedin.com/in/beatrizsantos",
+      "github": "https://github.com/beatrizsantos"
+    },
+    "createdAt": "2024-02-15T00:00:00Z"
+  },
+  {
+    "id": "3",
+    "name": "Carolina Mendoça",
+    "email": "carolina.mendoca@ellaia.com", 
+    "role": "AUTHOR",
+    "bio": "Psicóloga especializada em bem-estar digital e saúde mental. Investigadora em mindfulness e tecnologia. Autora de vários artigos sobre autocuidado.",
+    "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    "links": {
+      "linkedin": "https://linkedin.com/in/carolinamendoca",
+      "instagram": "https://instagram.com/carolinamindful"
+    },
+    "createdAt": "2024-03-10T00:00:00Z"
+  },
+  {
+    "id": "4",
+    "name": "Diana Ferreira",
+    "email": "diana.ferreira@ellaia.com",
+    "role": "AUTHOR", 
+    "bio": "Jornalista e storyteller. Especializada em histórias de impacto social e empreendedorismo feminino. Colabora com várias organizações sem fins lucrativos.",
+    "avatar": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
+    "links": {
+      "linkedin": "https://linkedin.com/in/dianaferreira",
+      "twitter": "https://twitter.com/dianaferreira",
+      "medium": "https://medium.com/@dianaferreira"
+    },
+    "createdAt": "2024-04-05T00:00:00Z"
+  }
+]

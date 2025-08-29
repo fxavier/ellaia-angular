@@ -1,0 +1,98 @@
+<header class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a routerLink="/" class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-gradient-to-r from-ellaia-magenta to-ellaia-coral rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-sm">E</span>
+          </div>
+          <span class="text-xl font-bold text-ellaia-ink">ELLAIA</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a routerLink="/" routerLinkActive="text-ellaia-magenta" [routerLinkActiveOptions]="{exact: true}" 
+           class="text-ellaia-ink hover:text-ellaia-magenta transition-colors">
+          Início
+        </a>
+        <a routerLink="/sobre" routerLinkActive="text-ellaia-magenta" 
+           class="text-ellaia-ink hover:text-ellaia-magenta transition-colors">
+          Sobre
+        </a>
+        <a routerLink="/voz-delas" routerLinkActive="text-ellaia-magenta" 
+           class="text-ellaia-ink hover:text-ellaia-magenta transition-colors">
+          A Voz d'Elas
+        </a>
+        <a routerLink="/servicos" routerLinkActive="text-ellaia-magenta" 
+           class="text-ellaia-ink hover:text-ellaia-magenta transition-colors">
+          Serviços
+        </a>
+        <a routerLink="/contacto" routerLinkActive="text-ellaia-magenta" 
+           class="text-ellaia-ink hover:text-ellaia-magenta transition-colors">
+          Contacto
+        </a>
+      </nav>
+
+      <!-- CTA Button -->
+      <div class="hidden md:flex items-center space-x-4">
+        <app-button variant="primary" size="sm">
+          Newsletter
+        </app-button>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <app-button 
+          variant="ghost" 
+          size="sm"
+          (click)="toggleMobileMenu()"
+        >
+          @if (!mobileMenuOpen()) {
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          } @else {
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          }
+        </app-button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    @if (mobileMenuOpen()) {
+      <div class="md:hidden border-t border-gray-100 pt-4 pb-4">
+        <nav class="flex flex-col space-y-4">
+          <a routerLink="/" (click)="closeMobileMenu()" 
+             class="text-ellaia-ink hover:text-ellaia-magenta transition-colors">
+            Início
+          </a>
+          <a routerLink="/sobre" (click)="closeMobileMenu()" 
+             class="text-ellaia-ink hover:text-ellaia-magenta transition-colors">
+            Sobre
+          </a>
+          <a routerLink="/voz-delas" (click)="closeMobileMenu()" 
+             class="text-ellaia-ink hover:text-ellaia-magenta transition-colors">
+            A Voz d'Elas
+          </a>
+          <a routerLink="/servicos" (click)="closeMobileMenu()" 
+             class="text-ellaia-ink hover:text-ellaia-magenta transition-colors">
+            Serviços
+          </a>
+          <a routerLink="/contacto" (click)="closeMobileMenu()" 
+             class="text-ellaia-ink hover:text-ellaia-magenta transition-colors">
+            Contacto
+          </a>
+          <div class="pt-2">
+            <app-button variant="primary" size="sm" [fullWidth]="true">
+              Newsletter
+            </app-button>
+          </div>
+        </nav>
+      </div>
+    }
+  </div>
+</header>

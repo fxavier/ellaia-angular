@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "slug": "lideranca",
+    "name": "Liderança"
+  },
+  {
+    "id": "2",
+    "slug": "tecnologia", 
+    "name": "Tecnologia"
+  },
+  {
+    "id": "3",
+    "slug": "carreira",
+    "name": "Carreira"
+  },
+  {
+    "id": "4",
+    "slug": "diversidade",
+    "name": "Diversidade"
+  },
+  {
+    "id": "5",
+    "slug": "autocuidado",
+    "name": "Autocuidado"
+  },
+  {
+    "id": "6",
+    "slug": "burnout",
+    "name": "Burnout"
+  },
+  {
+    "id": "7",
+    "slug": "bem-estar",
+    "name": "Bem-estar"
+  },
+  {
+    "id": "8",
+    "slug": "inteligencia-artificial",
+    "name": "Inteligência Artificial"
+  },
+  {
+    "id": "9",
+    "slug": "impacto-social",
+    "name": "Impacto Social"
+  },
+  {
+    "id": "10",
+    "slug": "comunidade",
+    "name": "Comunidade"
+  },
+  {
+    "id": "11",
+    "slug": "tecnologia-social", 
+    "name": "Tecnologia Social"
+  },
+  {
+    "id": "12",
+    "slug": "historia-inspiradora",
+    "name": "História Inspiradora"
+  },
+  {
+    "id": "13",
+    "slug": "empreendedorismo-social",
+    "name": "Empreendedorismo Social"
+  },
+  {
+    "id": "14", 
+    "slug": "mudanca-de-carreira",
+    "name": "Mudança de Carreira"
+  },
+  {
+    "id": "15",
+    "slug": "proposito",
+    "name": "Propósito"
+  },
+  {
+    "id": "16",
+    "slug": "escrita-terapeutica",
+    "name": "Escrita Terapêutica"
+  },
+  {
+    "id": "17",
+    "slug": "autoconhecimento",
+    "name": "Autoconhecimento"
+  },
+  {
+    "id": "18",
+    "slug": "cura",
+    "name": "Cura"
+  }
+]

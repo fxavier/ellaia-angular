@@ -1,0 +1,127 @@
+<!-- Header -->
+<section class="bg-gradient-to-r from-ellaia-magenta/10 to-ellaia-coral/10 py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-ellaia-ink mb-4">A Voz d'Elas</h1>
+      <p class="text-xl text-ellaia-muted max-w-3xl mx-auto">
+        Histórias inspiradoras, insights transformadores e conteúdo que potencia o teu crescimento pessoal e profissional.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Filters -->
+<section class="py-8 bg-white border-b">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-sm font-medium text-ellaia-ink">Filtrar por:</span>
+        @for (category of categories; track category.slug) {
+          <app-button 
+            [variant]="selectedCategory() === category.slug ? 'primary' : 'outline'"
+            size="sm"
+            (click)="selectCategory(category.slug)"
+          >
+            {{ category.name }}
+          </app-button>
+        }
+        @if (selectedCategory()) {
+          <app-button variant="ghost" size="sm" (click)="clearFilters()">
+            Limpar Filtros
+          </app-button>
+        }
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="text-sm text-ellaia-muted">{{ filteredPosts().length }} artigos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Posts Grid -->
+<section class="py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    @if (filteredPosts().length === 0) {
+      <div class="text-center py-16">
+        <div class="w-16 h-16 bg-ellaia-muted/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-ellaia-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-medium text-ellaia-ink mb-2">Nenhum artigo encontrado</h3>
+        <p class="text-ellaia-muted">Tenta ajustar os filtros ou volta mais tarde.</p>
+      </div>
+    } @else {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (post of filteredPosts(); track post.id) {
+          <app-card [hover]="true" class="overflow-hidden flex flex-col">
+            <div class="relative">
+              <img 
+                [src]="post.coverImage" 
+                [alt]="post.title"
+                class="w-full h-48 object-cover"
+              >
+              <div class="absolute top-4 left-4">
+                <app-badge 
+                  [variant]="getCategoryVariant(post.categorySlug)"
+                  size="sm"
+                >
+                  {{ post.categoryName }}
+                </app-badge>
+              </div>
+            </div>
+            
+            <div class="p-6 flex-1 flex flex-col">
+              <div class="flex items-center justify-between text-sm text-ellaia-muted mb-3">
+                <span>{{ post.publishedAt | date:'dd MMM yyyy' }}</span>
+                <span>{{ post.readingTime }} min leitura</span>
+              </div>
+              
+              <h3 class="text-lg font-semibold text-ellaia-ink mb-3 line-clamp-2 flex-1">
+                {{ post.title }}
+              </h3>
+              
+              <p class="text-ellaia-muted text-sm mb-4 line-clamp-3">
+                {{ post.excerpt }}
+              </p>
+
+              <div class="flex items-center justify-between mt-auto">
+                <div class="flex items-center space-x-2">
+                  <img 
+                    [src]="post.author.avatar" 
+                    [alt]="post.author.name"
+                    class="w-8 h-8 rounded-full"
+                  >
+                  <span class="text-sm text-ellaia-muted">{{ post.author.name }}</span>
+                </div>
+                
+                <app-button 
+                  variant="ghost" 
+                  size="sm" 
+                  [routerLink]="['/voz-delas', post.slug]"
+                >
+                  Ler Mais
+                </app-button>
+              </div>
+            </div>
+          </app-card>
+        }
+      </div>
+
+      <!-- Load More -->
+      @if (hasMorePosts()) {
+        <div class="text-center mt-12">
+          <app-button 
+            variant="outline" 
+            size="lg" 
+            [loading]="loading()"
+            (click)="loadMorePosts()"
+          >
+            Carregar Mais Artigos
+          </app-button>
+        </div>
+      }
+    }
+  </div>
+</section>

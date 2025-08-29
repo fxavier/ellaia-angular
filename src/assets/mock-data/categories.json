@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "slug": "carreira",
+    "name": "Carreira",
+    "description": "Desenvolvimento profissional e liderança feminina",
+    "color": "#D81B60"
+  },
+  {
+    "id": "2", 
+    "slug": "autocuidado",
+    "name": "Autocuidado",
+    "description": "Bem-estar físico, mental e emocional",
+    "color": "#FF6F61"
+  },
+  {
+    "id": "3",
+    "slug": "tecnologia-com-proposito", 
+    "name": "Tecnologia com Propósito",
+    "description": "Impacto social através da tecnologia",
+    "color": "#0EA5E9"
+  },
+  {
+    "id": "4",
+    "slug": "a-voz-delas",
+    "name": "A Voz d'Elas", 
+    "description": "Histórias e experiências inspiradoras",
+    "color": "#D81B60"
+  },
+  {
+    "id": "5",
+    "slug": "escrita-de-cura",
+    "name": "Escrita de Cura",
+    "description": "O poder transformador da escrita",
+    "color": "#FF6F61"
+  },
+  {
+    "id": "6",
+    "slug": "feminismos-e-cultura",
+    "name": "Feminismos e Cultura",
+    "description": "Reflexões sobre igualdade e sociedade", 
+    "color": "#0EA5E9"
+  }
+]

@@ -1,0 +1,96 @@
+<!-- Hero Section -->
+<section class="py-16 bg-gradient-to-br from-ellaia-electric/10 to-ellaia-coral/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-ellaia-ink mb-6">Os Nossos Serviços</h1>
+      <p class="text-xl text-ellaia-muted max-w-3xl mx-auto">
+        Oferecemos soluções personalizadas para apoiar o teu desenvolvimento pessoal e profissional.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Services Grid -->
+<section class="py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      @for (service of services; track service.id) {
+        <app-card [hover]="true" class="p-8">
+          <div class="flex items-start space-x-4">
+            <div [class]="'w-12 h-12 rounded-lg flex items-center justify-center ' + service.iconBg">
+              <svg class="w-6 h-6" [class]="service.iconColor" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="service.iconPath"></path>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold text-ellaia-ink mb-2">{{ service.title }}</h3>
+              <p class="text-ellaia-muted mb-4">{{ service.description }}</p>
+              <div class="space-y-2 mb-6">
+                @for (feature of service.features; track feature) {
+                  <div class="flex items-center text-sm text-ellaia-muted">
+                    <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    {{ feature }}
+                  </div>
+                }
+              </div>
+              <app-button variant="primary">
+                {{ service.cta }}
+              </app-button>
+            </div>
+          </div>
+        </app-card>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Process Section -->
+<section class="py-16 bg-ellaia-stone/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-ellaia-ink mb-4">Como Funciona</h2>
+      <p class="text-lg text-ellaia-muted max-w-2xl mx-auto">
+        O nosso processo foi desenhado para maximizar o teu crescimento e impacto.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      @for (step of processSteps; track step.number; let isLast = $last) {
+        <div class="relative">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-ellaia-magenta to-ellaia-coral rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-white font-bold text-lg">{{ step.number }}</span>
+            </div>
+            <h3 class="text-lg font-semibold text-ellaia-ink mb-2">{{ step.title }}</h3>
+            <p class="text-ellaia-muted text-sm">{{ step.description }}</p>
+          </div>
+          @if (!isLast) {
+            <div class="hidden md:block absolute top-8 left-full w-full">
+              <div class="w-full h-0.5 bg-gradient-to-r from-ellaia-magenta to-ellaia-coral opacity-30"></div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold text-ellaia-ink mb-4">Pronta para Dar o Próximo Passo?</h2>
+    <p class="text-lg text-ellaia-muted mb-8 max-w-2xl mx-auto">
+      Agenda uma consulta gratuita e descobre como podemos apoiar o teu crescimento pessoal e profissional.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <app-button variant="primary" size="lg">
+        Agendar Consulta Gratuita
+      </app-button>
+      <app-button variant="outline" size="lg">
+        Falar com a Nossa Equipa
+      </app-button>
+    </div>
+  </div>
+</section>
