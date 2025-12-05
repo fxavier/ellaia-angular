@@ -2,6 +2,10 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
 
+## Documentação
+- Visão geral do sistema e instruções de execução: `../docs/sistema.md`
+- Modelagem da base de dados com Prisma/PostgreSQL: `../docs/prisma-postgresql.md`
+
 ## Development server
 
 To start a local development server, run:
